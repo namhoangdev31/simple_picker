@@ -17,10 +17,5 @@ class CustomImagePickerController: UIImagePickerController {
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         // Xử lý sự kiện khi người dùng chạm vào màn hình
         let touchLocation = sender.location(in: self.view)
-//        print("Tapped at location: \(touchLocation)")
-        
-        // Present CustomFlutterViewController khi người dùng chạm vào ảnh
-//        let customFlutterViewController = CustomFlutterViewController()
-//        UIApplication.shared.keyWindow?.rootViewController = customFlutterViewController
     }
 }

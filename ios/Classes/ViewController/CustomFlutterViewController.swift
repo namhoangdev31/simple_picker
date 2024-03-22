@@ -5,9 +5,6 @@ class CustomFlutterViewController: FlutterViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Khởi tạo gesture recognizer và gán action handleTap
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-//        self.view.addGestureRecognizer(tapGesture)
     }
     
     // Override các phương thức của UIViewController để chặn sự kiện từ UIImagePickerController

@@ -9,8 +9,8 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:simple_picker/plugin_example.dart';
 
-import 'package:plugin_example/plugin_example.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

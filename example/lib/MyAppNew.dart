@@ -2,8 +2,8 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:plugin_example/plugin_example.dart';
 import 'package:plugin_example_example/tryhard.dart';
+import 'package:simple_picker/plugin_example.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);

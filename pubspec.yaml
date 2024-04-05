@@ -1,11 +1,11 @@
 name: simple_picker
-description: A new Flutter project.
-version: 0.0.1
+description: Simple picker is fix issue of image_picker plugin on iOS
+version: 0.0.3
 homepage: https://github.com/nam0254896/simple_picker
 
 environment:
   sdk: '>=3.1.4 <4.0.0'
-  flutter: '>=3.3.0'
+  flutter: '>=3.1.0'
 
 dependencies:
   flutter:
@@ -35,7 +35,7 @@ flutter:
   plugin:
     platforms:
       ios:
-        pluginClass: PluginExamplePlugin
+        pluginClass: SimplePickerPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

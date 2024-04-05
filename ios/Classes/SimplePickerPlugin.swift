@@ -2,10 +2,10 @@ import Flutter
 import UIKit
 
 @available(iOS 13.0, *)
-public class PluginExamplePlugin: NSObject, FlutterPlugin {
+public class SimplePickerPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
-        let channel = FlutterMethodChannel(name: "plugin_example", binaryMessenger: registrar.messenger())
-        let instance = PluginExamplePlugin()
+        let channel = FlutterMethodChannel(name: "simple_picker", binaryMessenger: registrar.messenger())
+        let instance = SimplePickerPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
         EventHandleChannel.register(with: registrar)
     }
@@ -14,25 +14,26 @@ public class PluginExamplePlugin: NSObject, FlutterPlugin {
         switch call.method {
             case "getPlatformVersion":
                 result("iOS " + UIDevice.current.systemVersion)
-            case "pickImage":
-                pickerImage(call, result: result)
+            case "pickImageWithTakePhoto":
+                pickImageWithTakePhoto(call, result: result)
+//            case "pickImageWithPhotoLibrary":
+//                pickImageWithPhotoLibrary(call, result: result)
             default:
                 result(FlutterMethodNotImplemented)
         }
     }
     
-    public func pickerImage(_ call: FlutterMethodCall, result: @escaping FlutterResult){
+    public func pickImageWithTakePhoto(_ call: FlutterMethodCall, result: @escaping FlutterResult){
         do {
-            var argument = call.arguments as! [String: Any]
-            var source = argument["source"] as! String
+//            var argument = call.arguments as! [String: Any]
+//            var source = argument["source"] as! String
             let cameraPlugin = CameraPlugin()
             cameraPlugin.allowsVideo = false
             cameraPlugin.allowsSelectFromLibrary = false
             cameraPlugin.didGetPhoto = { photo, _ in
-                    // Handle the selected photo here
-                    // You can return the image path to Dart if needed
+                    /// Handle the selected photo here
+                    /// You can return the image path to Dart if needed
                 let xFile = self.convertImageToFile(image: photo)
-                print(xFile)
                 result(xFile)
             }
             cameraPlugin.present()
@@ -42,6 +43,26 @@ public class PluginExamplePlugin: NSObject, FlutterPlugin {
         }
     }
     
+    public func pickImageWithPhotoLibrary(_ call: FlutterMethodCall, result: @escaping FlutterResult){
+        do {
+//            var argument = call.arguments as! [String: Any]
+//            var source = argument["source"] as! String
+            let cameraPlugin = CameraPlugin()
+            cameraPlugin.allowsPhoto = false
+            cameraPlugin.allowsVideo = false
+            cameraPlugin.allowsSelectFromLibrary = true
+            cameraPlugin.didGetPhoto = { photo, _ in
+                    /// Handle the selected photo here
+                    /// You can return the image path to Dart if needed
+                let xFile = self.convertImageToFile(image: photo)
+                result(xFile)
+            }
+            cameraPlugin.present()
+        } catch {
+            print("LOG ERROR")
+            result(FlutterError(code: "invalid_arguments", message: error.localizedDescription, details: nil))
+        }
+    }
     public func convertToPNG(image: UIImage) -> Data? {
         return image.pngData()
     }

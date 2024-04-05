@@ -3,14 +3,14 @@ PODS:
   - Flutter (1.0.0)
   - integration_test (0.0.1):
     - Flutter
-  - plugin_example (0.0.1):
+  - simple_picker (0.0.3):
     - FDTake
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
-  - plugin_example (from `.symlinks/plugins/plugin_example/ios`)
+  - simple_picker (from `.symlinks/plugins/simple_picker/ios`)
 
 SPEC REPOS:
   trunk:
@@ -21,15 +21,15 @@ EXTERNAL SOURCES:
     :path: Flutter
   integration_test:
     :path: ".symlinks/plugins/integration_test/ios"
-  plugin_example:
-    :path: ".symlinks/plugins/plugin_example/ios"
+  simple_picker:
+    :path: ".symlinks/plugins/simple_picker/ios"
 
 SPEC CHECKSUMS:
   FDTake: cbae493765483304fbaa48e402ea3d7b22ba86d0
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   integration_test: 13825b8a9334a850581300559b8839134b124670
-  plugin_example: 187492fc3c693320f89f7c52439f4aabb0c5de9d
+  simple_picker: 80a459b62e41897a8c6af5bef808eb43c25f177a
 
 PODFILE CHECKSUM: 70d9d25280d0dd177a5f637cdb0f0b0b12c6a189
 
-COCOAPODS: 1.14.2
+COCOAPODS: 1.15.2

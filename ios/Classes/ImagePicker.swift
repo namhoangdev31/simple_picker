@@ -5,22 +5,22 @@ import AVFoundation
 
 fileprivate enum CameraPluginLocationString: String {
     /// Decline to proceed with operation
-    case cancel = "cancel"
+    case cancel = "Cancel"
     
     /// Option to select photo from library
-    case chooseFromLibrary = "chooseFromLibrary"
+    case chooseFromLibrary = "Choose From Library"
     
     /// Option to select photo from photo roll
-    case chooseFromPhotoRoll = "chooseFromPhotoRoll"
+    case chooseFromPhotoRoll = "Choose From PhotoRoll"
     
     /// There are no sources available to select a photo
-    case noSources = "noSources"
+    case noSources = "No Sources"
     
     /// Option to take photo using camera
-    case takePhoto = "takePhoto"
+    case takePhoto = "Take Photo"
     
     /// Option to take video using camera
-    case takeVideo = "takeVideo"
+    case takeVideo = "Take Video"
     
     public func comment() -> String {
         switch self {
@@ -68,6 +68,12 @@ fileprivate enum CameraPluginLocationString: String {
     /// Whether to allow capturing a photo/video with the camera
     open var allowsTake = true
 
+    ///  That's the width of the image that the image was designed for (e.g. 375.0)
+     open var reDesignWidth: Double = 0.0
+
+    ///  That's the height of the image that the image was designed for (e.g. 667.0)
+     open var reDesignHeight: Double = 0.0 
+     
     /// Whether to allow selecting existing media
     open var allowsSelectFromLibrary = true
 
@@ -213,6 +219,8 @@ fileprivate enum CameraPluginLocationString: String {
                 titleToSource.append((buttonTitle: .chooseFromLibrary, source: .photoLibrary))
             } else if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
                 titleToSource.append((buttonTitle: .chooseFromPhotoRoll, source: .savedPhotosAlbum))
+            } else {
+                print("name")
             }
         }
 
@@ -267,15 +275,12 @@ fileprivate enum CameraPluginLocationString: String {
                 if UI_USER_INTERFACE_IDIOM() == .phone || (source == .camera && self.iPadUsesFullScreenCamera) {
                     
                     topVC.present(self.imagePicker, animated: true, completion: nil)
-                    print(topVC.presentedViewController)
                     let initController = FlutterViewController()
                 } else {
                     // On iPad use pop-overs.
                     self.imagePicker.modalPresentationStyle = .popover
                     self.imagePicker.popoverPresentationController?.sourceRect = popOverPresentRect
                     topVC.present(self.imagePicker, animated: true, completion: nil)
-                    print("")
-                    print(topVC.presentedViewController)
                 }
             }
             alertController!.addAction(action)
@@ -313,15 +318,17 @@ extension CameraPlugin: UINavigationControllerDelegate, UIImagePickerControllerD
         let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         UIApplication.shared.isStatusBarHidden = true
-//        EventHandleChannel.shared.sendEvent(dataSend: false)
         let mediaType: String = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaType)] as! String
         var imageToSave: UIImage
         // Handle a still image capture
         if mediaType == kUTTypeImage as String {
             if let editedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage {
-                imageToSave = editedImage
+                let rotatedImage = editedImage.rotate(radians: .pi * 2)
+                imageToSave = rotatedImage
             } else if let originalImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
-                imageToSave = originalImage
+                let rotatedImage = originalImage.rotate(radians: .pi * 2)
+                let resizeImage = rotatedImage.imageResize(newSize: CGSize(width: reDesignWidth, height: reDesignHeight))
+                imageToSave = resizeImage
             } else {
                 self.didCancel?()
                 return
@@ -353,5 +360,57 @@ extension CameraPlugin: UINavigationControllerDelegate, UIImagePickerControllerD
     // Helper function inserted by Swift 4.2 migrator.
     private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
         return input.rawValue
+    }
+}
+
+extension UIImage {
+    public func rotate(radians: CGFloat) -> UIImage {
+        let rotatedSize = CGRect(origin: .zero, size: size)
+            .applying(CGAffineTransform(rotationAngle: radians))
+            .integral.size
+        UIGraphicsBeginImageContext(rotatedSize)
+        if let context = UIGraphicsGetCurrentContext() {
+            let origin = CGPoint(x: rotatedSize.width / 2.0, y: rotatedSize.height / 2.0)
+            context.translateBy(x: origin.x, y: origin.y)
+            context.rotate(by: radians)
+            draw(in: CGRect(x: -size.width / 2.0, y: -size.height / 2.0, width: size.width, height: size.height))
+            let rotatedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return rotatedImage ?? self
+        }
+        return self
+    }
+    
+    public func imageResize(newSize: CGSize) -> UIImage {
+        let size = self.size
+        let newSize = calculateNewSize(for: size, maxWidth: 1500, maxHeight: 2000)
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        self.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
+    
+    public func calculateNewSize(for size: CGSize, maxWidth: CGFloat, maxHeight: CGFloat) -> CGSize {
+        var width = size.width
+        var height = size.height
+        
+        // Check if width exceeds maxWidth
+        if width > maxWidth {
+            let ratio = maxWidth / width
+            width *= ratio
+            height *= ratio
+        }
+        
+        // Check if height exceeds maxHeight
+        if height > maxHeight {
+            let ratio = maxHeight / height
+            width *= ratio
+            height *= ratio
+        }
+
+        return CGSize(width: width, height: height)
     }
 }

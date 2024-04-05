@@ -1,11 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:simple_picker/plugin_example_method_channel.dart';
+import 'package:simple_picker/simple_picker_method_channel.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelPluginExample platform = MethodChannelPluginExample();
+  MethodChannelSimplePickerPlatform platform =
+      MethodChannelSimplePickerPlatform();
   const MethodChannel channel = MethodChannel('plugin_example');
 
   setUp(() {

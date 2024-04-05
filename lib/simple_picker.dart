@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 
-import 'plugin_example_platform_interface.dart';
+import 'simple_picker_platform_interface.dart';
 
-class PluginExample {
+class SimplePicker {
   static const EventChannel _eventChannel =
       EventChannel('handle_result_channel');
 
@@ -13,7 +13,7 @@ class PluginExample {
 
   Stream<bool> get eventStream => _streamController.stream;
 
-  PluginExample() {
+  SimplePicker() {
     _streamController = StreamController<bool>.broadcast();
     _initialize();
   }
@@ -28,14 +28,14 @@ class PluginExample {
   }
 
   Future<String?> getPlatformVersion() {
-    return PluginExamplePlatform.instance.getPlatformVersion();
+    return SimplePickerPlatform.instance.getPlatformVersion();
   }
 
   Future<File?> showPicker({required String source}) {
-    return PluginExamplePlatform.instance.showPicker(source: source);
+    return SimplePickerPlatform.instance.showPicker(source: source);
   }
 
   Future<bool> callOffImage({required bool isAvaiable}) {
-    return PluginExamplePlatform.instance.callOffImage(isAvaiable: isAvaiable);
+    return SimplePickerPlatform.instance.callOffImage(isAvaiable: isAvaiable);
   }
 }

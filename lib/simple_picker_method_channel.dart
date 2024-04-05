@@ -4,13 +4,13 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'plugin_example_platform_interface.dart';
+import 'simple_picker_platform_interface.dart';
 
-/// An implementation of [PluginExamplePlatform] that uses method channels.
-class MethodChannelPluginExample extends PluginExamplePlatform {
+/// An implementation of [SimplePickerPlatform] that uses method channels.
+class MethodChannelSimplePickerPlatform extends SimplePickerPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('plugin_example');
+  final methodChannel = const MethodChannel('simple_picker');
 
   @override
   Future<String?> getPlatformVersion() async {
@@ -22,7 +22,7 @@ class MethodChannelPluginExample extends PluginExamplePlatform {
   @override
   Future<File> showPicker({required String source}) async {
     final String result =
-        await methodChannel.invokeMethod('pickImage', {'source': source});
+        await methodChannel.invokeMethod('pickImageWithTakePhoto');
     log('result: $result');
     return File(result);
   }

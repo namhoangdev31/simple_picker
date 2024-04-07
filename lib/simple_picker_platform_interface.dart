@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'simple_picker_method_channel.dart';
+import 'source_type.dart';
 
 abstract class SimplePickerPlatform extends PlatformInterface {
   /// Constructs a PluginExamplePlatform.
@@ -29,11 +30,16 @@ abstract class SimplePickerPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  Future<File?> showPicker({required String source}) {
+  Future<File?> showPicker({required SourceType source}) {
     throw UnimplementedError('showPicker() has not been implemented.');
   }
 
   Future<bool> callOffImage({required bool isAvaiable}) {
     throw UnimplementedError('callOffImage() has not been implemented.');
+  }
+
+  Future<File> pickImageWithPhotoLibrary() {
+    throw UnimplementedError(
+        'pickImageWithPhotoLibrary() has not been implemented.');
   }
 }

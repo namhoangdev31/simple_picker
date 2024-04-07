@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import 'simple_picker_platform_interface.dart';
+import 'source_type.dart';
 
 /// An implementation of [SimplePickerPlatform] that uses method channels.
 class MethodChannelSimplePickerPlatform extends SimplePickerPlatform {
@@ -20,9 +21,13 @@ class MethodChannelSimplePickerPlatform extends SimplePickerPlatform {
   }
 
   @override
-  Future<File> showPicker({required String source}) async {
+  Future<File> showPicker({required SourceType source}) async {
+    Map<String, dynamic> args = {
+      'source': source.name,
+    };
+
     final String result =
-        await methodChannel.invokeMethod('pickImageWithTakePhoto');
+        await methodChannel.invokeMethod('pickImageWithTakePhoto', args);
     log('result: $result');
     return File(result);
   }
@@ -32,5 +37,12 @@ class MethodChannelSimplePickerPlatform extends SimplePickerPlatform {
     final bool result = await methodChannel
         .invokeMethod('callOffImage', {'isAvaiable': isAvaiable});
     return result;
+  }
+
+  @override
+  Future<File> pickImageWithPhotoLibrary() async {
+    final String result =
+        await methodChannel.invokeMethod('pickImageWithPhotoLibrary');
+    return File(result);
   }
 }

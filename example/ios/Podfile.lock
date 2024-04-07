@@ -3,7 +3,7 @@ PODS:
   - Flutter (1.0.0)
   - integration_test (0.0.1):
     - Flutter
-  - simple_picker (0.0.3):
+  - simple_picker (0.0.4):
     - FDTake
     - Flutter
 
@@ -28,7 +28,7 @@ SPEC CHECKSUMS:
   FDTake: cbae493765483304fbaa48e402ea3d7b22ba86d0
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   integration_test: 13825b8a9334a850581300559b8839134b124670
-  simple_picker: 80a459b62e41897a8c6af5bef808eb43c25f177a
+  simple_picker: 6f422cc45905d98ec8a43ad2f9faf9bd34ec4018
 
 PODFILE CHECKSUM: 70d9d25280d0dd177a5f637cdb0f0b0b12c6a189
 

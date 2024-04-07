@@ -4,9 +4,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:image/image.dart' as img;
-import 'package:flutter/services.dart';
-import 'package:plugin_example_example/MyAppNew.dart';
 import 'package:simple_picker/simple_picker.dart';
+import 'package:simple_picker/source_type.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,8 +30,20 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> _showPicker() async {
     try {
-      var result = await _simplePickerPlugin.showPicker(source: 'front');
+      var result =
+          await _simplePickerPlugin.showPicker(source: SourceType.back);
       log('result: $result');
+      setState(() {
+        _value = result;
+      });
+    } catch (e) {
+      log('error: $e');
+    }
+  }
+
+  Future<void> pickImageWithPhotoLibrary() async {
+    try {
+      var result = await _simplePickerPlugin.pickImageWithPhotoLibrary();
       setState(() {
         _value = result;
       });
@@ -95,6 +106,10 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 onPressed: _showPicker,
                 child: const Text('Show Picker'),
+              ),
+              ElevatedButton(
+                onPressed: pickImageWithPhotoLibrary,
+                child: const Text('pickImageWithPhotoLibrary'),
               ),
               Text('Data received True or Null: ${_value}'),
               if (_value != null)

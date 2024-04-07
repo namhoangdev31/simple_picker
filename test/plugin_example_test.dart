@@ -5,6 +5,7 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:simple_picker/simple_picker.dart';
 import 'package:simple_picker/simple_picker_method_channel.dart';
 import 'package:simple_picker/simple_picker_platform_interface.dart';
+import 'package:simple_picker/source_type.dart';
 
 class MockPluginExamplePlatform
     with MockPlatformInterfaceMixin
@@ -13,7 +14,7 @@ class MockPluginExamplePlatform
   Future<String?> getPlatformVersion() => Future.value('42');
 
   @override
-  Future<File?> showPicker({required String source}) {
+  Future<File?> showPicker({required SourceType source}) {
     // TODO: implement showPicker
     throw UnimplementedError();
   }
@@ -21,6 +22,12 @@ class MockPluginExamplePlatform
   @override
   Future<bool> callOffImage({required bool isAvaiable}) {
     // TODO: implement callOffImage
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<File> pickImageWithPhotoLibrary() {
+    // TODO: implement pickImageWithPhotoLibrary
     throw UnimplementedError();
   }
 }

@@ -3,7 +3,7 @@ import MobileCoreServices
 import Flutter
 import AVFoundation
 
-fileprivate enum CameraPluginLocationString: String {
+public enum CameraPluginLocationString: String {
     /// Decline to proceed with operation
     case cancel = "Cancel"
     

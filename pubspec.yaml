@@ -1,6 +1,6 @@
 name: simple_picker
 description: Simple picker is fix issue of image_picker plugin on iOS
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/nam0254896/simple_picker
 
 environment:

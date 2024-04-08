@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FloatingSwipedActivity</string>
+    <string name="default_text">Default Text</string>
+    <string name="cancel">Cancel</string>
+</resources>

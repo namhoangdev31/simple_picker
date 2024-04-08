@@ -7,9 +7,7 @@ import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
-/**
- * Created by jamper on 11/8/2017.
- */
+
 
 public class DragHandler {
     Activity mContext;

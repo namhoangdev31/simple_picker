@@ -32,6 +32,7 @@ public class FloatingActivity extends AppCompatActivity {
 
         getWindowManager().updateViewLayout(view, lp);
 
+
     }
 
 }

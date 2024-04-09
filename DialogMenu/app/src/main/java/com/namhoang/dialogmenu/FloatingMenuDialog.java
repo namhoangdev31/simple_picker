@@ -18,50 +18,60 @@ import static android.view.Gravity.BOTTOM;
 import androidx.annotation.Nullable;
 
 public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
-    OnMenuItemClickListener onPositiveOnClick, onNegativeOnClick, onNeutralOnClick, onExtraOnClick;
+    OnMenuItemClickListener onTakePhotoClick, onTakeVideoClick, onChooseFromLibraryClick, onChooseFromPhotoRollClick;
 
-    TextView title, positiveButtonText, neutralButtonText, extraButtonText, cancelText;
-    LinearLayout cancelButton, extraButton, neutralButton;
+    TextView title, takePhotoText, takeVideoText, chooseFromLibraryText, cancelText , chooseFromPhotoRollText;
+    LinearLayout cancelButton, takePhotoButton , takeVideoButton , chooseFromLibraryButton , chooseFromPhotoRollButton;
     private boolean dismissDialog, cancelable;
 
-    private String titleText, positiveText, neutralText, extraText, cancellingText;
-    private int titleColor, positiveTextColor, neutralTextColor, extraTextColor, cancelTextColor = 0;
+    private String titleText, takePhoto,takeVideo,chooseFromLibrary, chooseFromPhotoRoll, cancellingText;
+    private int titleColor, takePhotoColor,takeVideoColor,chooseFromLibraryColor, chooseFromPhotoRollColor, cancelTextColor = 0;
 
     private Activity mContext;
     private String fontName = "";
+
+    private boolean isShowTakePhoto , isShowTakeVideo , isShowChooseFromLibrary , isShowChooseFromPhotoRoll;
 
     public FloatingMenuDialog(Activity context) {
         super(context);
         mContext = context;
         dismissDialog = true;
         cancelable = true;
-        positiveText = null;
-        neutralText = null;
-        extraText = null;
+        takePhoto = null;
+        takeVideo= null;
+        chooseFromLibrary= null;
+        chooseFromPhotoRoll= null;
+        isShowTakePhoto = true;
+        isShowTakeVideo = true;
+        isShowChooseFromLibrary = true;
+        isShowChooseFromPhotoRoll = true;
     }
 
     private void initViews() {
-        title = (TextView) findViewById(R.id.dg_Title_x);
-        positiveButtonText = (TextView) findViewById(R.id.dg_PositiveButtonText_x);
-        neutralButtonText = (TextView) findViewById(R.id.dg_NeutralButtonText_x);
-        extraButtonText = (TextView) findViewById(R.id.dg_ExtraButtonText_x);
+//        title = (TextView) findViewById(R.id.dg_Title_x);
+        takePhotoText = (TextView) findViewById(R.id.dg_TakePhotoButtonText_x);
+        takeVideoText = (TextView) findViewById(R.id.dg_TakeVideoButtonText_x);
+        chooseFromLibraryText = (TextView) findViewById(R.id.dg_ChooseFromLibraryButtonText_x);
+        chooseFromPhotoRollText = (TextView) findViewById(R.id.dg_ChooseFromPhotoRollText_x);
         cancelText = (TextView) findViewById(R.id.dg_cancelText_x);
         cancelButton = (LinearLayout) findViewById(R.id.dg_CancelButton_x);
-        extraButton = (LinearLayout) findViewById(R.id.dg_ExtraButton_x);
-        neutralButton = (LinearLayout) findViewById(R.id.dg_NeutralButton_x);
-
-        positiveButtonText.setOnClickListener(this);
-        neutralButton.setOnClickListener(this);
-        extraButton.setOnClickListener(this);
+        takePhotoButton = (LinearLayout) findViewById(R.id.dg_TakePhotoButton_x);
+        takeVideoButton = (LinearLayout) findViewById(R.id.dg_TakeVideo_x);
+        chooseFromLibraryButton= (LinearLayout) findViewById(R.id.dg_ChooseFromLibraryButtonButton_x);
+        chooseFromPhotoRollButton =  (LinearLayout) findViewById(R.id.dg_ChooseFromPhotoRoll_x);
+        takePhotoButton.setOnClickListener(this);
+        takeVideoButton.setOnClickListener(this);
+        chooseFromLibraryButton.setOnClickListener(this);
+        chooseFromPhotoRollButton.setOnClickListener(this);
         cancelButton.setOnClickListener(this);
 
         //////////////////////////////////////////////////////////////////////
         /// Hide Some of the Views, the POSITIVE, EXTRA, and NEUTRAL BUTTONS
         /////////////////////////////////////////////////////////////////////
-        positiveButtonText.setVisibility(View.GONE);
-        neutralButton.setVisibility(View.GONE);
-        extraButton.setVisibility(View.GONE);
-
+        takePhotoButton.setVisibility(View.GONE);
+        takeVideoButton.setVisibility(View.GONE);
+        chooseFromLibraryButton.setVisibility(View.GONE);
+        chooseFromPhotoRollButton.setVisibility(View.GONE);
 
         setUpViewAttributes();
     }
@@ -74,9 +84,10 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
                 this.title.setVisibility(View.GONE);
 
 
-            this.setViewsText(positiveButtonText, positiveText);
-            this.setViewsText(neutralButtonText, neutralText);
-            this.setViewsText(extraButtonText, extraText);
+            this.setViewsText(takePhotoText, takePhoto);
+            this.setViewsText(takeVideoText, takeVideo);
+            this.setViewsText(chooseFromLibraryText, chooseFromLibrary);
+            this.setViewsText(chooseFromPhotoRollText, chooseFromPhotoRoll);
 
             if (cancellingText != null && !TextUtils.isEmpty(cancellingText))
                 this.setViewsText(cancelText, cancellingText);
@@ -87,32 +98,38 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
             //////////////////////////////////////////////////////////////////////
             /// Show the called Views, the POSITIVE, EXTRA, and NEUTRAL BUTTONS
             /////////////////////////////////////////////////////////////////////
-            if (positiveText != null && !TextUtils.isEmpty(positiveText)) {
-                positiveButtonText.setVisibility(View.VISIBLE);
+            if (takePhoto != null && !TextUtils.isEmpty(takePhoto)) {
+                takePhotoButton.setVisibility(View.VISIBLE);
             }
 
-            if (neutralText != null && !TextUtils.isEmpty(neutralText)) {
-                neutralButton.setVisibility(View.VISIBLE);
-                neutralButtonText.setVisibility(View.VISIBLE);
+            if (takeVideo != null && !TextUtils.isEmpty(takeVideo)) {
+                takeVideoButton.setVisibility(View.VISIBLE);
+//                neutralButtonText.setVisibility(View.VISIBLE);
             }
 
-            if (extraText != null && !TextUtils.isEmpty(extraText)) {
-                extraButton.setVisibility(View.VISIBLE);
+            if (chooseFromLibrary != null && !TextUtils.isEmpty(chooseFromLibrary)) {
+                chooseFromLibraryButton.setVisibility(View.VISIBLE);
             }
 
+            if (chooseFromPhotoRoll != null && !TextUtils.isEmpty(chooseFromPhotoRoll)) {
+                chooseFromPhotoRollButton.setVisibility(View.VISIBLE);
+            }
 
             try {
                 if (titleColor != 0)
                     title.setTextColor(titleColor);
 
-                if (positiveTextColor != 0)
-                    positiveButtonText.setTextColor(positiveTextColor);
+                if (takePhotoColor != 0)
+                    takePhotoText.setTextColor(takePhotoColor);
 
-                if (neutralTextColor != 0)
-                    neutralButtonText.setTextColor(neutralTextColor);
+                if (takeVideoColor != 0)
+                    takeVideoText.setTextColor(takeVideoColor);
 
-                if (extraTextColor != 0)
-                    extraButtonText.setTextColor(extraTextColor);
+                if (chooseFromLibraryColor != 0)
+                    chooseFromLibraryText.setTextColor(chooseFromLibraryColor);
+
+                if (chooseFromPhotoRollColor != 0)
+                    chooseFromPhotoRollText.setTextColor(chooseFromPhotoRollColor);
 
                 if (cancelTextColor != 0)
                     cancelText.setTextColor(cancelTextColor);
@@ -128,9 +145,10 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
                 Typeface font = Typeface.createFromAsset(mContext.getAssets(), fontName);
 
                 title.setTypeface(font);
-                positiveButtonText.setTypeface(font);
-                neutralButtonText.setTypeface(font);
-                extraButtonText.setTypeface(font);
+                takePhotoText.setTypeface(font);
+                takeVideoText.setTypeface(font);
+                chooseFromLibraryText.setTypeface(font);
+                chooseFromPhotoRollText.setTypeface(font);
                 cancelText.setTypeface(font);
 
             }catch (IllegalArgumentException e){
@@ -186,23 +204,23 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
     }
 
 
-    public FloatingMenuDialog setOnPositiveButtonOnClick(OnMenuItemClickListener onMenuItemClickListener) {
-        this.onPositiveOnClick = onMenuItemClickListener;
+    public FloatingMenuDialog setOnTakePhotoBtnClick(OnMenuItemClickListener onMenuItemClickListener) {
+        this.onTakePhotoClick = onMenuItemClickListener;
         return this;
     }
 
-    public FloatingMenuDialog setOnExtraButtonOnClick(OnMenuItemClickListener onMenuItemClickListener) {
-        this.onExtraOnClick = onMenuItemClickListener;
+    public FloatingMenuDialog setOnTakeVideoBtnClick(OnMenuItemClickListener onMenuItemClickListener) {
+        this.onTakeVideoClick = onMenuItemClickListener;
         return this;
     }
 
-    public FloatingMenuDialog setOnNeutralButtonOnClick(OnMenuItemClickListener onMenuItemClickListener) {
-        this.onNeutralOnClick = onMenuItemClickListener;
+    public FloatingMenuDialog setOnChooseFromLibraryBtnClick(OnMenuItemClickListener onMenuItemClickListener) {
+        this.onChooseFromLibraryClick = onMenuItemClickListener;
         return this;
     }
 
-    public FloatingMenuDialog setOnNegativeButtonOnClick(OnMenuItemClickListener onMenuItemClickListener) {
-        this.onNegativeOnClick = onMenuItemClickListener;
+    public FloatingMenuDialog setOnChooseFromPhotoRollClick(OnMenuItemClickListener onMenuItemClickListener) {
+        this.onChooseFromPhotoRollClick = onMenuItemClickListener;
         return this;
     }
 
@@ -279,18 +297,18 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
     }
 
 
-    public FloatingMenuDialog setPositveButtonText(@Nullable CharSequence charSequence) {
+    public FloatingMenuDialog setTakePhotoButtonText(@Nullable CharSequence charSequence) {
         try {
-            this.positiveText = String.valueOf(charSequence);
+            this.takePhoto = String.valueOf(charSequence);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return this;
     }
 
-    public FloatingMenuDialog setPositveButtonText(int textId) {
+    public FloatingMenuDialog setTakePhotoButtonText(int textId) {
         try {
-            this.positiveText = getContext().getResources().getString(textId);
+            this.takePhoto = getContext().getResources().getString(textId);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -298,44 +316,63 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
         return this;
     }
 
-
-    public FloatingMenuDialog setNeutralButtonText(@Nullable CharSequence charSequence) {
+    public FloatingMenuDialog setTakeVideoButtonText(@Nullable CharSequence charSequence) {
         try {
-            this.neutralText = String.valueOf(charSequence);
+            this.takeVideo = String.valueOf(charSequence);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return this;
     }
 
-    public FloatingMenuDialog setNeutralButtonText(int textId) {
+    public FloatingMenuDialog setTakeVideoButtonText(int textId) {
         try {
-            this.neutralText = getContext().getResources().getString(textId);
+            this.takeVideo = getContext().getResources().getString(textId);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return this;
     }
 
-    public FloatingMenuDialog setExtraButtonText(@Nullable CharSequence charSequence) {
+    public FloatingMenuDialog setChooseFromLibraryButtonText(@Nullable CharSequence charSequence) {
         try {
-            this.extraText = String.valueOf(charSequence);
+            this.chooseFromLibrary = String.valueOf(charSequence);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return this;
     }
 
-    public FloatingMenuDialog setExtraButtonText(int textId) {
+    public FloatingMenuDialog setChooseFromLibraryButtonText(int textId) {
         try {
-            this.extraText = getContext().getResources().getString(textId);
+            this.chooseFromLibrary = getContext().getResources().getString(textId);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return this;
     }
 
-    public FloatingMenuDialog setNegativeButtonText(@Nullable CharSequence charSequence) {
+    public FloatingMenuDialog setChooseFromPhotoRoll(@Nullable CharSequence charSequence) {
+        try {
+            this.chooseFromPhotoRoll = String.valueOf(charSequence);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+
+    public FloatingMenuDialog setChooseFromPhotoRoll(int textId) {
+        try {
+            this.chooseFromPhotoRoll = getContext().getResources().getString(textId);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+    public FloatingMenuDialog setCancelButtonText(@Nullable CharSequence charSequence) {
         try {
             this.cancellingText = String.valueOf(charSequence);
         } catch (Exception e) {
@@ -344,7 +381,7 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
         return this;
     }
 
-    public FloatingMenuDialog setNegativeButtonText(int textId) {
+    public FloatingMenuDialog setCancelButtonText(int textId) {
         try {
             //   this.setDefaultText(cancelText, null, textId);
             this.cancellingText = getContext().getResources().getString(textId);
@@ -366,36 +403,71 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
         return this;
     }
 
-
     ///////////======= SET THE TEXT COLORS ========/////////////
-    public FloatingMenuDialog setPositiveTextColor(int color) {
+    public FloatingMenuDialog setTakePhotoColor(Object color ) {
         try {
-            this.positiveTextColor = mContext.getResources().getColor(color) ;
+            if(color instanceof Integer){
+                this.takePhotoColor = mContext.getResources().getColor((int) color);
+            }
+           else if(color instanceof String) {
+                this.takePhotoColor = Color.parseColor((String) color);
+            } else {
+               this.takePhotoColor = 0;
+            }
         }catch (IllegalArgumentException e){
-            this.positiveTextColor = 0;
+            this.takePhotoColor = 0;
         }
         return this;
     }
 
-    public FloatingMenuDialog setExtraTextColor(int color) {
+    public FloatingMenuDialog setTakeVideoColor(Object color) {
         try {
-            this.extraTextColor = mContext.getResources().getColor(color) ;
+            if(color instanceof Integer){
+                this.takeVideoColor = mContext.getResources().getColor((int) color);
+            }
+            else if(color instanceof String) {
+                this.takeVideoColor = Color.parseColor((String) color);
+            } else {
+                this.takeVideoColor = 0;
+            }
+//            this.takeVideoColor = mContext.getResources().getColor(color) ;
         }catch (IllegalArgumentException e){
-            this.extraTextColor = 0;
+            this.takeVideoColor = 0;
         }
         return this;
     }
 
-    public FloatingMenuDialog setNeutralTextColor(int color) {
+    public FloatingMenuDialog setChooseFromLibraryColor(Object color) {
         try {
-            this.neutralTextColor = mContext.getResources().getColor(color) ;
+            if(color instanceof Integer){
+                this.chooseFromLibraryColor = mContext.getResources().getColor((int) color);
+            }
+            else if(color instanceof String) {
+                this.chooseFromLibraryColor = Color.parseColor((String) color);
+            } else {
+                this.chooseFromLibraryColor = 0;
+            }
         }catch (IllegalArgumentException e){
-            this.neutralTextColor = 0;
+            this.chooseFromLibraryColor = 0;
         }
         return this;
     }
-
-    public FloatingMenuDialog setNegativeTextColor(int color) {
+    public FloatingMenuDialog setChooseFromPhotoRollColor(Object color) {
+        try {
+            if(color instanceof Integer){
+                this.chooseFromPhotoRollColor = mContext.getResources().getColor((int) color);
+            }
+            else if(color instanceof String) {
+                this.chooseFromPhotoRollColor = Color.parseColor((String) color);
+            } else {
+                this.chooseFromPhotoRollColor = 0;
+            }
+        }catch (IllegalArgumentException e){
+            this.chooseFromPhotoRollColor = 0;
+        }
+        return this;
+    }
+    public FloatingMenuDialog setCancelTextColor(int color) {
         try {
             this.cancelTextColor = mContext.getResources().getColor(color) ;
         }catch (IllegalArgumentException e){
@@ -414,34 +486,6 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
         return this;
     }
 
-    // Using the Hexadecimal Colors
-
-    public FloatingMenuDialog setPositiveTextColor(String color) {
-        try {
-            this.positiveTextColor = Color.parseColor(color);
-        }catch (IllegalArgumentException e){
-            this.positiveTextColor = 0;
-        }
-        return this;
-    }
-
-    public FloatingMenuDialog setExtraTextColor(String color) {
-        try {
-            this.extraTextColor = Color.parseColor(color);
-        }catch (IllegalArgumentException e){
-            this.extraTextColor = 0;
-        }
-        return this;
-    }
-
-    public FloatingMenuDialog setNeutralTextColor(String color) {
-        try {
-            this.neutralTextColor = Color.parseColor(color);
-        }catch (IllegalArgumentException e){
-            this.neutralTextColor = 0;
-        }
-        return this;
-    }
 
     public FloatingMenuDialog setNegativeTextColor(String color) {
         try {
@@ -472,25 +516,30 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.dg_PositiveButtonText_x) {
-            if (onPositiveOnClick != null)
-                onPositiveOnClick.onClick();
+        if (v.getId() == R.id.dg_TakePhotoButton_x) {
+            if (onTakePhotoClick != null)
+                onTakePhotoClick.onClick();
         }
 
-        if (v.getId() == R.id.dg_NeutralButton_x) {
-            if (onNeutralOnClick != null)
-                onNeutralOnClick.onClick();
+        if (v.getId() == R.id.dg_TakeVideo_x) {
+            if (onTakeVideoClick != null)
+                onTakeVideoClick.onClick();
         }
 
         if (v.getId() == R.id.dg_CancelButton_x) {
-            if (onNegativeOnClick != null)
-                onNegativeOnClick.onClick();
+//            if ( != null)
+//                onChooseFromLibraryClick.onClick();
             dismissDialog();
         }
 
-        if (v.getId() == R.id.dg_ExtraButton_x) {
-            if (onExtraOnClick != null)
-                onExtraOnClick.onClick();
+        if (v.getId() == R.id.dg_ChooseFromLibraryButtonButton_x) {
+            if (onChooseFromLibraryClick != null)
+                onChooseFromLibraryClick.onClick();
+        }
+
+        if (v.getId() == R.id.dg_ChooseFromPhotoRoll_x) {
+            if (onChooseFromPhotoRollClick != null)
+                onChooseFromPhotoRollClick.onClick();
         }
 
         if (dismissDialog)

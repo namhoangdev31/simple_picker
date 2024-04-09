@@ -12,34 +12,48 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <TextView
-            android:id="@+id/dg_Title_x"
+<!--        <TextView-->
+<!--            android:id="@+id/dg_Title_x"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:text="Title"-->
+
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="16sp" />-->
+        <LinearLayout
+            android:id="@+id/dg_TakePhotoButton_x"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal"
-            android:text="Title"
-
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-
+            android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="0dp"
+            android:background="@color/colorBlack" />
 
         <TextView
-            android:id="@+id/dg_PositiveButtonText_x"
+            android:id="@+id/dg_TakePhotoButtonText_x"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
             android:gravity="center_horizontal"
-            android:text="Positive button"
+            android:text="@string/take_photo"
             android:textColor="@android:color/background_dark"
             android:textSize="15sp" />
+        </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/dg_ExtraButton_x"
+            android:id="@+id/dg_TakeVideo_x"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -55,27 +69,27 @@
                 android:background="@color/colorBlack" />
 
             <TextView
-                android:id="@+id/dg_ExtraButtonText_x"
+                android:id="@+id/dg_TakeVideoButtonText_x"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="15dp"
                 android:gravity="center_horizontal"
-                android:text="Extra Button"
+                android:text="@string/take_video"
                 android:textColor="@android:color/background_dark"
                 android:textSize="15sp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/dg_NeutralButton_x"
+            android:id="@+id/dg_ChooseFromLibraryButtonButton_x"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <View
-                android:id="@+id/extra_view"
+                android:id="@+id/cflibrary_view"
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:layout_marginEnd="10dp"
@@ -86,14 +100,44 @@
                 android:background="@color/colorBlack" />
 
             <TextView
-                android:id="@+id/dg_NeutralButtonText_x"
+                android:id="@+id/dg_ChooseFromLibraryButtonText_x"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="15dp"
                 android:gravity="center_horizontal"
-                android:text="Neutral button"
+                android:text="@string/choose_from_library"
+                android:textColor="@android:color/background_dark"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dg_ChooseFromPhotoRoll_x"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="0dp"
+                android:background="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/dg_ChooseFromPhotoRollText_x"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_horizontal"
+                android:text="@string/choose_from_photoroll"
                 android:textColor="@android:color/background_dark"
                 android:textSize="15sp" />
 
@@ -120,12 +164,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:textStyle="bold"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="15sp" />
 
     </LinearLayout>
-
 
 </LinearLayout>

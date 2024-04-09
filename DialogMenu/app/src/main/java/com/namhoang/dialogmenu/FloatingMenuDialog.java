@@ -27,11 +27,11 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
     private String titleText, takePhoto,takeVideo,chooseFromLibrary, chooseFromPhotoRoll, cancellingText;
     private int titleColor, takePhotoColor,takeVideoColor,chooseFromLibraryColor, chooseFromPhotoRollColor, cancelTextColor = 0;
 
-    private Activity mContext;
-    private String fontName = "";
+    private final Activity mContext;
 
     private boolean isShowTakePhoto , isShowTakeVideo , isShowChooseFromLibrary , isShowChooseFromPhotoRoll;
 
+    private String fontName = "";
     public FloatingMenuDialog(Activity context) {
         super(context);
         mContext = context;
@@ -77,11 +77,21 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
     }
 
     private void setUpViewAttributes() {
+//        if (titleText != null && !TextUtils.isEmpty(titleText))
+//            title.setText(titleText);
+//        else
+//            title.setVisibility(View.GONE);
+
+        if (cancellingText != null && !TextUtils.isEmpty(cancellingText))
+            cancelText.setText(cancellingText);
+        else
+            cancelText.setText(getContext().getResources().getString(R.string.cancel));
+
         try {
-            if (titleText != null && !TextUtils.isEmpty(titleText))
-                this.title.setText(titleText);
-            else
-                this.title.setVisibility(View.GONE);
+//            if (titleText != null && !TextUtils.isEmpty(titleText))
+//                this.title.setText(titleText);
+//            else
+//                this.title.setVisibility(View.GONE);
 
 
             this.setViewsText(takePhotoText, takePhoto);
@@ -255,10 +265,10 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
         }
     }
 
-    public FloatingMenuDialog setDialogTitle(int titleId) {
-        this.setTitle(titleId);
-        return this;
-    }
+//    public FloatingMenuDialog setCancelButtonText(CharSequence text) {
+//        this.cancellingText = String.valueOf(text);
+//        return this;
+//    }
 
 
     public FloatingMenuDialog setDialogTitle(@Nullable CharSequence title) {
@@ -335,18 +345,18 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
         return this;
     }
 
+//    public FloatingMenuDialog setChooseFromLibraryButtonText(@Nullable CharSequence charSequence) {
+//        try {
+//            this.chooseFromLibrary = String.valueOf(charSequence);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return this;
+//    }
+
     public FloatingMenuDialog setChooseFromLibraryButtonText(@Nullable CharSequence charSequence) {
         try {
             this.chooseFromLibrary = String.valueOf(charSequence);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return this;
-    }
-
-    public FloatingMenuDialog setChooseFromLibraryButtonText(int textId) {
-        try {
-            this.chooseFromLibrary = getContext().getResources().getString(textId);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -24,85 +24,92 @@
 
             android:textColor="@android:color/black"
             android:textSize="16sp" />
-
-
-        <TextView
-            android:id="@+id/dg_PositiveButtonText_x"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:gravity="center_horizontal"
-            android:text="Positive button"
-            android:textColor="@android:color/background_dark"
-            android:textSize="15sp" />
-
-        <LinearLayout
-            android:id="@+id/dg_ExtraButton_x"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="0dp"
-                android:background="@color/colorBlack" />
-
-            <TextView
-                android:id="@+id/dg_ExtraButtonText_x"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="15dp"
-                android:gravity="center_horizontal"
-                android:text="Extra Button"
-                android:textColor="@android:color/background_dark"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/dg_NeutralButton_x"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <View
-                android:id="@+id/extra_view"
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="0dp"
-                android:background="@color/colorBlack" />
-
-            <TextView
-                android:id="@+id/dg_NeutralButtonText_x"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="15dp"
-                android:gravity="center_horizontal"
-                android:text="Neutral button"
-                android:textColor="@android:color/background_dark"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-
     </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dg_RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"/>
 
+    <!--    <LinearLayout-->
+<!--        <TextView-->
+<!--            android:id="@+id/dg_PositiveButtonText_x"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginBottom="15dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:text="Positive button"-->
+<!--            android:textColor="@android:color/background_dark"-->
+<!--            android:textSize="15sp" />-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/dg_ExtraButton_x"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0.1dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="0dp"-->
+<!--                android:background="@color/colorBlack" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/dg_ExtraButtonText_x"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginBottom="15dp"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:text="Extra Button"-->
+<!--                android:textColor="@android:color/background_dark"-->
+<!--                android:textSize="15sp" />-->
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/dg_NeutralButton_x"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <View-->
+<!--                android:id="@+id/extra_view"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0.1dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="0dp"-->
+<!--                android:background="@color/colorBlack" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/dg_NeutralButtonText_x"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginBottom="15dp"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:text="Neutral button"-->
+<!--                android:textColor="@android:color/background_dark"-->
+<!--                android:textSize="15sp" />-->
+
+<!--        </LinearLayout>-->
+
+
+<!--    </LinearLayout>-->
+
+    <!-- Button Cancel -->
     <LinearLayout
         android:id="@+id/dg_CancelButton_x"
         android:layout_width="match_parent"

@@ -233,7 +233,7 @@ open class CameraPlugin {
 
     fun showOptionsDialog(activity : Activity) {
         FloatingMenuDialog(activity)
-                .setDialogTitle("Add Picture")
+//                .setDialogTitle("Add Picture")
                 .setPositveButtonText("From Camera")
                 .setNeutralButtonText("From Gallery")
                 .setExtraButtonText("From Google Drive")

@@ -1,7 +1,8 @@
 plugins {
-//    alias(libs.plugins.androidApplication)
-//    alias(libs.plugins.jetbrainsKotlinAndroid)
-    id ("com.android.library")
+    //
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.jetbrainsKotlinAndroid)
+//    id ("com.android.library")
 }
 
 android {
@@ -9,11 +10,13 @@ android {
     compileSdk = 34
 
     defaultConfig {
-//        applicationId = "com.namhoang.dialogmenu"
-        minSdk = 19
+        //
+        applicationId = "com.namhoang.dialogmenu"
+        minSdk = 21
         targetSdk = 33
-//        versionCode = 1
-//        versionName = "0.0.1"
+        //
+        versionCode = 1
+        versionName = "0.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -31,9 +34,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-//    kotlinOptions {
-//        jvmTarget = "1.8"
-//    }
+    //
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     buildFeatures {
         compose = true
     }
@@ -58,6 +62,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

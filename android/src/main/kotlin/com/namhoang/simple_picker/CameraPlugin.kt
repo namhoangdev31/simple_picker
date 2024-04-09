@@ -233,33 +233,9 @@ open class CameraPlugin {
 
     fun showOptionsDialog(activity : Activity) {
         FloatingMenuDialog(activity)
-                .setDialogTitle("Add Picture")
-                .setPositveButtonText("From Camera")
-                .setNeutralButtonText("From Gallery")
-                .setExtraButtonText("From Google Drive")
-                .setNegativeButtonText("Close Dialog")
-                .setDismissDialogOnMenuOnClick(false) //Dismiss the dialog anytime a menu item is clicked
-                .setDialogCancelable(true) // Set dialog cancellable
-                .setOnPositiveButtonOnClick(object : OnMenuItemClickListener {
-                    override fun onClick() {
-                        Toast.makeText(activity, "Positive", Toast.LENGTH_SHORT).show()
-                    }
-                })
-                .setOnNegativeButtonOnClick(object : OnMenuItemClickListener {
-                    override fun onClick() {
-                        Toast.makeText(activity, "Negative", Toast.LENGTH_SHORT).show()
-                    }
-                })
-                .setOnNeutralButtonOnClick(object : OnMenuItemClickListener {
-                    override fun onClick() {
-                        Toast.makeText(activity, "Neutral", Toast.LENGTH_SHORT).show()
-                    }
-                })
-                .setOnExtraButtonOnClick(object : OnMenuItemClickListener {
-                    override fun onClick() {
-                        Toast.makeText(activity, "Extra", Toast.LENGTH_SHORT).show()
-                    }
-                })
+            .setCancelButtonText("Cancel")
+            .setTakeVideoButtonText("Video")
+            .setOnTakeVideoBtnClick()
                 .show()
     }
 }

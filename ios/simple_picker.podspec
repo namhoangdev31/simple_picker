@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'simple_picker'
-  s.version          = '0.0.4'
+  s.version          = '0.0.5'
   s.summary          = 'Simple picker is fix issue of image_picker plugin on iOS 14.5'
   s.description      = <<-DESC
   Simple picker is fix issue of image_picker plugin on iOS 14.5

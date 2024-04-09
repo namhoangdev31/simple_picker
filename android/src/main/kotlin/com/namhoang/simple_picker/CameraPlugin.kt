@@ -11,9 +11,7 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import com.google.android.material.tabs.TabLayout
-import com.namhoang.dialogmenu.Callbacks.OnMenuItemClickListener
 import com.namhoang.dialogmenu.FloatingMenuDialog
 
 
@@ -231,11 +229,16 @@ open class CameraPlugin {
         return activities.isNotEmpty()
     }
 
-    fun showOptionsDialog(activity : Activity) {
-        FloatingMenuDialog(activity)
-            .setCancelButtonText("Cancel")
-            .setTakeVideoButtonText("Video")
-            .setOnTakeVideoBtnClick(didCancel)
-                .show()
+    private fun showOptionsDialog(activity : Activity) {
+//        FloatingMenuDialog(activity)
+//            .setCancelButtonText("Cancel")
+//            .setTakeVideoButtonText("Video")
+//            .setOnTakeVideoBtnClick(didCancel)
+//                .show()
+        val activity = FloatingMenuDialog(activity)
+        activity.setCancelButtonText("Cancel")
+        activity.setTakeVideoButtonText("Video")
+        activity.setOnTakeVideoBtnClick(didCancel)
+        activity.show()
     }
 }

@@ -50,6 +50,7 @@
             android:orientation="vertical">
 
             <View
+                android:id="@+id/v_TakeVideo_divider"
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:layout_marginStart="10dp"
@@ -80,7 +81,7 @@
             android:orientation="vertical">
 
             <View
-                android:id="@+id/cflibrary_view"
+                android:id="@+id/v_ChooseFromLibrary_view"
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:layout_marginStart="10dp"
@@ -111,6 +112,7 @@
             android:orientation="vertical">
 
             <View
+                android:id="@+id/v_ChooseFromPhotoRoll_divider"
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:layout_marginStart="10dp"

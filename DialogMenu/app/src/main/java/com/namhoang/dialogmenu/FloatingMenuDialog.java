@@ -20,9 +20,11 @@ import androidx.annotation.Nullable;
 public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
     OnMenuItemClickListener onTakePhotoClick, onTakeVideoClick, onChooseFromLibraryClick, onChooseFromPhotoRollClick;
 
-    TextView title, takePhotoText, takeVideoText, chooseFromLibraryText, cancelText , chooseFromPhotoRollText;
+    TextView title, takePhotoTextView, takeVideoTextView, chooseFromLibraryTextView, cancelTextView , chooseFromPhotoRollTextView;
     LinearLayout cancelButton, takePhotoButton , takeVideoButton , chooseFromLibraryButton , chooseFromPhotoRollButton;
     private boolean dismissDialog, cancelable;
+
+    View takeVideoDivider , chooseFromLibraryDivider , choosePhotoRollDivider;
 
     private String titleText, takePhoto,takeVideo,chooseFromLibrary, chooseFromPhotoRoll, cancellingText;
     private int titleColor, takePhotoColor,takeVideoColor,chooseFromLibraryColor, chooseFromPhotoRollColor, cancelTextColor = 0;
@@ -49,16 +51,19 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
 
     private void initViews() {
 //        title = (TextView) findViewById(R.id.dg_Title_x);
-        takePhotoText = (TextView) findViewById(R.id.dg_TakePhotoButtonText_x);
-        takeVideoText = (TextView) findViewById(R.id.dg_TakeVideoButtonText_x);
-        chooseFromLibraryText = (TextView) findViewById(R.id.dg_ChooseFromLibraryButtonText_x);
-        chooseFromPhotoRollText = (TextView) findViewById(R.id.dg_ChooseFromPhotoRollText_x);
-        cancelText = (TextView) findViewById(R.id.dg_cancelText_x);
+        takePhotoTextView = (TextView) findViewById(R.id.dg_TakePhotoButtonText_x);
+        takeVideoTextView = (TextView) findViewById(R.id.dg_TakeVideoButtonText_x);
+        chooseFromLibraryTextView = (TextView) findViewById(R.id.dg_ChooseFromLibraryButtonText_x);
+        chooseFromPhotoRollTextView = (TextView) findViewById(R.id.dg_ChooseFromPhotoRollText_x);
+        cancelTextView = (TextView) findViewById(R.id.dg_cancelText_x);
         cancelButton = (LinearLayout) findViewById(R.id.dg_CancelButton_x);
         takePhotoButton = (LinearLayout) findViewById(R.id.dg_TakePhotoButton_x);
         takeVideoButton = (LinearLayout) findViewById(R.id.dg_TakeVideo_x);
         chooseFromLibraryButton= (LinearLayout) findViewById(R.id.dg_ChooseFromLibraryButtonButton_x);
         chooseFromPhotoRollButton =  (LinearLayout) findViewById(R.id.dg_ChooseFromPhotoRoll_x);
+        takeVideoDivider = (View)  findViewById(R.id.v_TakeVideo_divider);
+        chooseFromLibraryDivider = (View) findViewById(R.id.v_ChooseFromLibrary_view);
+        choosePhotoRollDivider = (View) findViewById(R.id.v_ChooseFromPhotoRoll_divider);
         takePhotoButton.setOnClickListener(this);
         takeVideoButton.setOnClickListener(this);
         chooseFromLibraryButton.setOnClickListener(this);
@@ -72,7 +77,9 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
         takeVideoButton.setVisibility(View.GONE);
         chooseFromLibraryButton.setVisibility(View.GONE);
         chooseFromPhotoRollButton.setVisibility(View.GONE);
-
+        takeVideoDivider.setVisibility(View.GONE);
+        chooseFromLibraryDivider.setVisibility(View.GONE);
+        choosePhotoRollDivider.setVisibility(View.GONE);
         setUpViewAttributes();
     }
 
@@ -83,9 +90,9 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
 //            title.setVisibility(View.GONE);
 
         if (cancellingText != null && !TextUtils.isEmpty(cancellingText))
-            cancelText.setText(cancellingText);
+            cancelTextView.setText(cancellingText);
         else
-            cancelText.setText(getContext().getResources().getString(R.string.cancel));
+            cancelTextView.setText(getContext().getResources().getString(R.string.cancel));
 
         try {
 //            if (titleText != null && !TextUtils.isEmpty(titleText))
@@ -94,15 +101,15 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
 //                this.title.setVisibility(View.GONE);
 
 
-            this.setViewsText(takePhotoText, takePhoto);
-            this.setViewsText(takeVideoText, takeVideo);
-            this.setViewsText(chooseFromLibraryText, chooseFromLibrary);
-            this.setViewsText(chooseFromPhotoRollText, chooseFromPhotoRoll);
+            this.setViewsText(takePhotoTextView, takePhoto);
+            this.setViewsText(takeVideoTextView, takeVideo);
+            this.setViewsText(chooseFromLibraryTextView, chooseFromLibrary);
+            this.setViewsText(chooseFromPhotoRollTextView, chooseFromPhotoRoll);
 
             if (cancellingText != null && !TextUtils.isEmpty(cancellingText))
-                this.setViewsText(cancelText, cancellingText);
+                this.setViewsText(cancelTextView, cancellingText);
             else
-                this.setViewsText(cancelText, getContext().getResources().getString(R.string.cancel));
+                this.setViewsText(cancelTextView, getContext().getResources().getString(R.string.cancel));
 
 
             //////////////////////////////////////////////////////////////////////
@@ -110,15 +117,18 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
             /////////////////////////////////////////////////////////////////////
             if (takePhoto != null && !TextUtils.isEmpty(takePhoto)) {
                 takePhotoButton.setVisibility(View.VISIBLE);
+                takeVideoDivider.setVisibility(View.VISIBLE);
             }
 
             if (takeVideo != null && !TextUtils.isEmpty(takeVideo)) {
                 takeVideoButton.setVisibility(View.VISIBLE);
+                chooseFromLibraryDivider.setVisibility(View.VISIBLE);
 //                neutralButtonText.setVisibility(View.VISIBLE);
             }
 
             if (chooseFromLibrary != null && !TextUtils.isEmpty(chooseFromLibrary)) {
                 chooseFromLibraryButton.setVisibility(View.VISIBLE);
+                choosePhotoRollDivider.setVisibility(View.VISIBLE);
             }
 
             if (chooseFromPhotoRoll != null && !TextUtils.isEmpty(chooseFromPhotoRoll)) {
@@ -130,19 +140,19 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
                     title.setTextColor(titleColor);
 
                 if (takePhotoColor != 0)
-                    takePhotoText.setTextColor(takePhotoColor);
+                    takePhotoTextView.setTextColor(takePhotoColor);
 
                 if (takeVideoColor != 0)
-                    takeVideoText.setTextColor(takeVideoColor);
+                    takeVideoTextView.setTextColor(takeVideoColor);
 
                 if (chooseFromLibraryColor != 0)
-                    chooseFromLibraryText.setTextColor(chooseFromLibraryColor);
+                    chooseFromLibraryTextView.setTextColor(chooseFromLibraryColor);
 
                 if (chooseFromPhotoRollColor != 0)
-                    chooseFromPhotoRollText.setTextColor(chooseFromPhotoRollColor);
+                    chooseFromPhotoRollTextView.setTextColor(chooseFromPhotoRollColor);
 
                 if (cancelTextColor != 0)
-                    cancelText.setTextColor(cancelTextColor);
+                    cancelTextView.setTextColor(cancelTextColor);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -155,11 +165,11 @@ public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
                 Typeface font = Typeface.createFromAsset(mContext.getAssets(), fontName);
 
                 title.setTypeface(font);
-                takePhotoText.setTypeface(font);
-                takeVideoText.setTypeface(font);
-                chooseFromLibraryText.setTypeface(font);
-                chooseFromPhotoRollText.setTypeface(font);
-                cancelText.setTypeface(font);
+                takePhotoTextView.setTypeface(font);
+                takeVideoTextView.setTypeface(font);
+                chooseFromLibraryTextView.setTypeface(font);
+                chooseFromPhotoRollTextView.setTypeface(font);
+                cancelTextView.setTypeface(font);
 
             }catch (IllegalArgumentException e){
                 e.printStackTrace();

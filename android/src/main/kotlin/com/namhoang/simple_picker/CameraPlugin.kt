@@ -235,7 +235,7 @@ open class CameraPlugin {
         FloatingMenuDialog(activity)
             .setCancelButtonText("Cancel")
             .setTakeVideoButtonText("Video")
-            .setOnTakeVideoBtnClick()
+            .setOnTakeVideoBtnClick(didCancel)
                 .show()
     }
 }

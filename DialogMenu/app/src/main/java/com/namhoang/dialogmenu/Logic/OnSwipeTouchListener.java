@@ -97,7 +97,7 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
 
     public void onSwipeDown() {
         try {
-            //      mContext.getWindow().setWindowAnimations(R.style.AnimationDragDown);
+                  mContext.getWindow().setWindowAnimations(R.style.AnimationDragDown);
         } catch (Exception e) {
 
         }

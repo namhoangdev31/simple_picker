@@ -9,6 +9,11 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import androidx.compose.ui.graphics.Color;
+
+import com.namhoang.dialogmenu.Callbacks.OnMenuItemClickListener;
 
 public class MainActivity extends Activity {
 
@@ -43,9 +48,20 @@ public class MainActivity extends Activity {
     // Phương thức để mở popup FloatingMenuDialog
     private void openFloatingMenuDialog() {
         // Tạo một instance của FloatingMenuDialog và hiển thị nó
-        FloatingMenuDialog floatingMenuDialog = new FloatingMenuDialog(MainActivity.this);
-        floatingMenuDialog.setCancelButtonText("Cancel").;
-        floatingMenuDialog.show();
+        new FloatingMenuDialog(MainActivity.this)
+//                 .setDialogTitle("Add Picture")
+//                .setChooseFromLibraryButtonText("Choose From Library")
+                .setChooseFromPhotoRoll("Choose From PhotoRoll") // Assuming a method for setting text for choosing from photo roll
+//                .setTakePhotoButtonText("Take Photo")
+//                .setDialogTitle("Simple Picker")
+//                .setTakeVideoButtonText("Take Video")
+                .setDismissDialogOnMenuOnClick(false) // Dismiss the dialog anytime a menu item is clicked
+                .setDialogCancelable(true) // Set dialog cancellable
+                .setOnTakePhotoBtnClick((OnMenuItemClickListener) () -> Toast.makeText(MainActivity.this, "Positive", Toast.LENGTH_SHORT).show())
+                .setOnTakeVideoBtnClick((OnMenuItemClickListener) () -> Toast.makeText(MainActivity.this, "Negative", Toast.LENGTH_SHORT).show())
+                .setOnChooseFromLibraryBtnClick((OnMenuItemClickListener) () -> Toast.makeText(MainActivity.this, "Neutral", Toast.LENGTH_SHORT).show())
+                .setOnChooseFromPhotoRollClick((OnMenuItemClickListener) () -> Toast.makeText(MainActivity.this, "Extra", Toast.LENGTH_SHORT).show())
+                .show();
     }
 
     // Các phương thức khác của MainActivity

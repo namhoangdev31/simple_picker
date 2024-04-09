@@ -11,9 +11,7 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import com.google.android.material.tabs.TabLayout
-import com.namhoang.dialogmenu.Callbacks.OnMenuItemClickListener
 import com.namhoang.dialogmenu.FloatingMenuDialog
 
 
@@ -233,7 +231,7 @@ open class CameraPlugin {
 
     fun showOptionsDialog(activity : Activity) {
         FloatingMenuDialog(activity)
-//                .setDialogTitle("Add Picture")
+                .setDialogTitle("Add Picture")
                 .setPositveButtonText("From Camera")
                 .setNeutralButtonText("From Gallery")
                 .setExtraButtonText("From Google Drive")

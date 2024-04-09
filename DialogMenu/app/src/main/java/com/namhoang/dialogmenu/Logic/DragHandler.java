@@ -46,7 +46,7 @@ public class DragHandler {
     }
 
 
-    private class MyDragListener implements View.OnDragListener {
+    private static class MyDragListener implements View.OnDragListener {
         //  Drawable enterShape = mContext.getResources().getDrawable(R.drawable.shape_droptarget);
         //  Drawable normalShape = mContext.getResources().getDrawable(R.drawable.shape);
 

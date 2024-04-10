@@ -16,7 +16,6 @@ import com.namhoang.dialogmenu.Callbacks.OnMenuItemClickListener;
 import static android.view.Gravity.BOTTOM;
 
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class FloatingMenuDialog extends Dialog implements View.OnClickListener {
     OnMenuItemClickListener onTakePhotoClick, onTakeVideoClick, onChooseFromLibraryClick, onChooseFromPhotoRollClick;

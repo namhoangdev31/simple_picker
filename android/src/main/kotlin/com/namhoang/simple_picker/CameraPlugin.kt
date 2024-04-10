@@ -259,5 +259,6 @@ open class CameraPlugin {
                     }
                 })
                 .show()
+
     }
 }

@@ -7,9 +7,7 @@ buildscript {
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10'
     }
 }
-ext {
-    dialogmenuVersion = '0.01'
-}// Cấu hình repository
+// Cấu hình repository
 allprojects {
     repositories {
         google()

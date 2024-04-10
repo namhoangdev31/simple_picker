@@ -12,18 +12,17 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/dg_Title_x"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_gravity="center_horizontal"-->
-        <!--            android:layout_marginBottom="10dp"-->
-        <!--            android:layout_marginTop="10dp"-->
-        <!--            android:gravity="center_horizontal"-->
-        <!--            android:text="Title"-->
-
-        <!--            android:textColor="@android:color/black"-->
-        <!--            android:textSize="16sp" />-->
+                <TextView
+                    android:id="@+id/dg_Title_x"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginVertical="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/choose_an_option"
+                    android:textStyle="italic"
+                    android:textColor="@android:color/accessibility_feature_background"
+                    android:textSize="12sp" />
         <LinearLayout
             android:id="@+id/dg_TakePhotoButton_x"
             android:layout_width="match_parent"
@@ -38,6 +37,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
                 android:gravity="center_horizontal"
+                android:paddingHorizontal="85dp"
                 android:text="@string/take_photo"
                 android:textColor="@android:color/background_dark"
                 android:textSize="15sp" />
@@ -68,6 +68,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
                 android:gravity="center_horizontal"
+                android:paddingHorizontal="85dp"
                 android:text="@string/take_video"
                 android:textColor="@android:color/background_dark"
                 android:textSize="15sp" />
@@ -101,6 +102,7 @@
                 android:gravity="center_horizontal"
                 android:text="@string/choose_from_library"
                 android:textColor="@android:color/background_dark"
+                android:paddingHorizontal="35dp"
                 android:textSize="15sp" />
 
         </LinearLayout>
@@ -116,6 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:layout_marginStart="10dp"
+                android:paddingHorizontal="40dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="10dp"

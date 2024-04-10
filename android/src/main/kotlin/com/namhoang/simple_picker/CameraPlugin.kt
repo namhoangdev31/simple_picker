@@ -238,6 +238,7 @@ open class CameraPlugin {
         val activity = FloatingMenuDialog(activity)
         activity.setCancelButtonText("Cancel")
         activity.setTakeVideoButtonText("Video")
+        activity.setTakePhotoButtonText("Photo")
         activity.setOnTakeVideoBtnClick(didCancel)
         activity.show()
     }

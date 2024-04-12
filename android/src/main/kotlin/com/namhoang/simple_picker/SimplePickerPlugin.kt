@@ -50,8 +50,7 @@ class SimplePickerPlugin : FlutterPlugin, MethodCallHandler , ActivityAware {
         print("pickImageWithTakePhoto")
         activity?.let { activity ->
           cameraPlugin.allowPhoto = true
-          cameraPlugin.allowVideo = false
-          cameraPlugin.allowsTake = true
+          cameraPlugin.allowVideo = true
           cameraPlugin.currentActivity = activity
           cameraPlugin.didGetPhoto = { image: Bitmap, metadata: Map<Any, Any> ->
             // Thực hiện một số công việc với hình ảnh và dữ liệu metadata

@@ -151,7 +151,6 @@ open class CameraPlugin {
 
             alertDialog = AlertDialog.Builder(presentingViewController)
                 .setTitle(str)
-                .setPositiveButton("Check") { _, _ -> didDeny?.invoke() }.setPositiveButton("c") { _, _ -> didDeny?.invoke() }
                 .setPositiveButton("OK") { _, _ -> didDeny?.invoke() }
                 .setOnCancelListener { didCancel?.invoke() }
                 .create()
@@ -166,26 +165,27 @@ open class CameraPlugin {
         } else {
             val items = titleToSource.map { localizeString(it.first) }.toTypedArray()
 
-            alertDialog = AlertDialog.Builder(presentingViewController)
-                .setTitle("Choose a source")
-                .setItems(items) { _, which ->
-                    val (title, source) = titleToSource[which]
-                    when (title) {
-                        CameraPluginLocationString.TAKE_PHOTO -> takePhoto()
-                        CameraPluginLocationString.TAKE_VIDEO -> takeVideo()
-                        CameraPluginLocationString.CHOOSE_FROM_LIBRARY -> chooseFromLibrary()
-                        CameraPluginLocationString.CHOOSE_FROM_PHOTO_ROLL -> chooseFromPhotoRoll()
-                        else -> didDeny?.invoke()
-                    }
-                }
-                .setOnCancelListener { didCancel?.invoke() }
-                .create()
+//            alertDialog = AlertDialog.Builder(presentingViewController)
+//                .setTitle("Choose a source")
+//                .setItems(items) { _, which ->
+//                    val (title, source) = titleToSource[which]
+//                    when (title) {
+//                        CameraPluginLocationString.TAKE_PHOTO -> takePhoto()
+//                        CameraPluginLocationString.TAKE_VIDEO -> takeVideo()
+//                        CameraPluginLocationString.CHOOSE_FROM_LIBRARY -> chooseFromLibrary()
+//                        CameraPluginLocationString.CHOOSE_FROM_PHOTO_ROLL -> chooseFromPhotoRoll()
+//                        else -> didDeny?.invoke()
+//                    }
+//                }
+//                .setOnCancelListener { didCancel?.invoke() }
+//                .create()
+            showOptionsDialog(presentingViewController)
         }
     }
 
     private fun takePhoto() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (takePictureIntent.resolveActivity(presentingViewController.packageManager) != null) {
+        if (isCameraAvailable(presentingViewController)) {
             presentingViewController.startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
         }
     }
@@ -230,16 +230,27 @@ open class CameraPlugin {
     }
 
     private fun showOptionsDialog(activity : Activity) {
-//        FloatingMenuDialog(activity)
-//            .setCancelButtonText("Cancel")
-//            .setTakeVideoButtonText("Video")
-//            .setOnTakeVideoBtnClick(didCancel)
-//                .show()
-        val activity = FloatingMenuDialog(activity)
-        activity.setCancelButtonText("Cancel")
-        activity.setTakeVideoButtonText("Video")
-        activity.setTakePhotoButtonText("Photo")
-        activity.setOnTakeVideoBtnClick(didCancel)
-        activity.show()
+        val diaLogMenu = FloatingMenuDialog(activity)
+        diaLogMenu.setCancelButtonText(CameraPluginLocationString.CANCEL.stringValue)
+        if(allowPhoto) {
+            diaLogMenu.setTakePhotoButtonText(CameraPluginLocationString.TAKE_PHOTO.stringValue)
+            diaLogMenu.setOnTakePhotoBtnClick {
+                takePhoto()
+            }
+        }
+        if(allowVideo) {
+            diaLogMenu.setTakeVideoButtonText(CameraPluginLocationString.TAKE_VIDEO.stringValue)
+            diaLogMenu.setOnTakeVideoBtnClick {
+                takeVideo()
+            }
+        }
+        if(allowExistingMedia) {
+            diaLogMenu.setChooseFromLibraryButtonText(CameraPluginLocationString.CHOOSE_FROM_LIBRARY.stringValue)
+            diaLogMenu.setOnChooseFromLibraryBtnClick {
+                chooseFromLibrary()
+            }
+        }
+
+        diaLogMenu.show()
     }
 }

@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        google()  // Add Google's Maven repository
+        jcenter() // Add JCenter repository
+    }
+    dependencies {
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10'
+    }
+}
+// Cấu hình repository
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Add JCenter repository
+    }
+}
+
+// Định nghĩa buildDir cho dự án gốc và tất cả dự án con
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+
+//// Chỉ định dự án ':app' để đánh giá trước (:app được đặt là dự án gốc)
+//project(':app').afterEvaluate {
+//    // Cấu hình dự án ':app' ở đây
+//}
+
+// Đăng ký task clean để xóa thư mục build
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

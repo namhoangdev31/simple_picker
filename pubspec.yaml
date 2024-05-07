@@ -1,21 +1,25 @@
 name: simple_picker
 description: Simple picker is fix issue of image_picker plugin on iOS
-version: 0.0.4
+version: 0.0.5
 homepage: https://github.com/namhoangdev31/simple_picker.git
 
 environment:
-  sdk: '>=3.1.4 <4.0.0'
-  flutter: '>=3.1.0'
+  sdk: ">=3.1.4 <4.0.0"
+  flutter: ">=3.1.0"
 
 dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
+  bloc: any
+  get_it: any
+  get: any
+  image_picker: any
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -35,6 +39,9 @@ flutter:
   plugin:
     platforms:
       ios:
+        pluginClass: SimplePickerPlugin
+      android:
+        package: com.namhoang.simple_picker
         pluginClass: SimplePickerPlugin
 
   # To add assets to your plugin package, add an assets section, like this:

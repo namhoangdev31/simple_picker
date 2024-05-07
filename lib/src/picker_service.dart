@@ -1,4 +1,5 @@
-import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PickerService {
@@ -15,11 +16,15 @@ class PickerService {
       if (pickedFile != null) {
         return pickedFile.path;
       } else {
-        print('No image selected.');
+        if (kDebugMode) {
+          print('No image selected.');
+        }
         return null;
       }
     } catch (e) {
-      print('Error picking image from gallery: $e');
+      if (kDebugMode) {
+        print('Error picking image from gallery: $e');
+      }
       return null;
     }
   }
@@ -36,11 +41,15 @@ class PickerService {
       if (pickedFile != null) {
         return pickedFile.path;
       } else {
-        print('No image selected.');
+        if (kDebugMode) {
+          print('No image selected.');
+        }
         return null;
       }
     } catch (e) {
-      print('Error picking image from camera: $e');
+      if (kDebugMode) {
+        print('Error picking image from camera: $e');
+      }
       return null;
     }
   }

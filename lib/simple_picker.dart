@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/services.dart';
+
 import 'package:simple_picker/source_type.dart';
 
 import 'simple_picker_platform_interface.dart';

@@ -118,28 +118,6 @@ class _MyAppState extends State<MyApp> {
                       // _showImageDialog();
                     },
                     child: Image.file(_value!)),
-              // Text('Data received: ${snapshot.data}'),
-              // FutureBuilder(
-              //   future: _getImageSize(_value!.path),
-              //   builder: (context, snapshot) {
-              //     if (snapshot.connectionState == ConnectionState.waiting) {
-              //       return CircularProgressIndicator();
-              //     } else if (snapshot.hasError) {
-              //       return Text('Error: ${snapshot.error}');
-              //     } else {
-              //       final img.Image? image = snapshot.data;
-              //       return Column(
-              //         children: [
-              //           Image.file(File(_value!.path)),
-              //           SizedBox(height: 20),
-              //           Text('Width: ${image!.width}'),
-              //           SizedBox(height: 10),
-              //           Text('Height: ${image!.height}'),
-              //         ],
-              //       );
-              //     }
-              //   },
-              // ),
               ElevatedButton(
                 onPressed: () {
                   // _showImageDialog();

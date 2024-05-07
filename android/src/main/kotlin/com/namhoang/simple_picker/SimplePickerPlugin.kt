@@ -20,7 +20,7 @@ class SimplePickerPlugin : FlutterPlugin, MethodCallHandler , ActivityAware {
 
   private var activity: Activity? = null // Add variable activity
 
-  private val cameraPlugin = CameraPlugin() // Add cameraPlugin
+//  private val cameraPlugin = CameraPlugin() // Add cameraPlugin
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "simple_picker")
     channel.setMethodCallHandler(this)
@@ -46,24 +46,24 @@ class SimplePickerPlugin : FlutterPlugin, MethodCallHandler , ActivityAware {
       "getPlatformVersion" -> {
         result.success("Android ${android.os.Build.VERSION.RELEASE}")
       }
-      "pickImageWithTakePhoto" -> {
-        print("pickImageWithTakePhoto")
-        activity?.let { activity ->
-          cameraPlugin.allowPhoto = true
-          cameraPlugin.allowVideo = true
-          cameraPlugin.currentActivity = activity
-          cameraPlugin.didGetPhoto = { image: Bitmap, metadata: Map<Any, Any> ->
-            // Thực hiện một số công việc với hình ảnh và dữ liệu metadata
-          }
-          cameraPlugin.present()
-        }
-      }
-      "pickImageWithPhotoLibrary" -> {
-        // Xử lý trường hợp thứ ba
-      }
-      "pickListImageWithPL" -> {
-        // Xử lý trường hợp thứ tư
-      }
+//      "pickImageWithTakePhoto" -> {
+//        print("pickImageWithTakePhoto")
+//        activity?.let { activity ->
+//          cameraPlugin.allowPhoto = true
+//          cameraPlugin.allowVideo = true
+//          cameraPlugin.currentActivity = activity
+//          cameraPlugin.didGetPhoto = { image: Bitmap, metadata: Map<Any, Any> ->
+//            // Thực hiện một số công việc với hình ảnh và dữ liệu metadata
+//          }
+//          cameraPlugin.present()
+//        }
+//      }
+//      "pickImageWithPhotoLibrary" -> {
+//        // Xử lý trường hợp thứ ba
+//      }
+//      "pickListImageWithPL" -> {
+//        // Xử lý trường hợp thứ tư
+//      }
       else -> {
         result.notImplemented()
       }

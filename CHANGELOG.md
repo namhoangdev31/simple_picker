@@ -9,3 +9,8 @@
 ## 0.0.4 
 
 - New Change : Upgrade new feature for support pick image from photo library
+
+## 0.0.5
+
+- New Change : Upgrade new feature for support pick image from camera and photo library with android 
+

@@ -11,10 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
-  bloc: any
-  get_it: any
-  get: any
-  image_picker: any
+  image_picker: ^1.1.1
 
 dev_dependencies:
   flutter_test:

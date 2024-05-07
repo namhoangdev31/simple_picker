@@ -16,7 +16,7 @@ To use Simple Picker in your Flutter project, follow these steps:
 
 ```yaml
 dependencies:
-  simple_picker: ^0.0.5
+  simple_picker: ^0.0.6
 ```
 
 2. Import when you want to pick up an image from the camera or photo library.
